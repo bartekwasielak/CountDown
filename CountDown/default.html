@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>CountDown</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+    <!-- CountDown references -->
+    <link href="/css/default.css" rel="stylesheet" />
+    <script src="/js/jquery-2.0.3.min.js"></script>
+    <script src="/js/events.js"></script>
+    <script src="/js/default.js"></script>
+    <script src="/js/script.js"></script>
+</head>
+    <body>
+        <div class="eventTemplate" data-win-control="WinJS.Binding.Template">
+            <div class="eventTitle" data-win-bind="textContent: name"></div>
+            <div class="mainSpanValue" data-win-bind="textContent: mainSpanValue"></div>
+            <div class="mainSpanUnit" data-win-bind="textContent: mainSpanUnit"></div>
+            <div class="secondarySpan" data-win-bind="textContent: secondarySpan"></div>
+        </div>
+
+        <div data-win-control="WinJS.UI.ListView"
+             data-win-bind="winControl.itemDataSource: events.dataSource"
+             data-win-options="{
+                itemTemplate: select('.eventTemplate')
+                }"></div>
+    </body>
+</html>
