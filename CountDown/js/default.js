@@ -7,6 +7,10 @@
 
     var app = WinJS.Application;
     var activation = Windows.ApplicationModel.Activation;
+    var notifications = Windows.UI.Notifications;
+    notifications.TileUpdateManager.createTileUpdaterForApplication().enableNotificationQueue(true);
+    var template = notifications.TileTemplateType.tileWideBlockAndText01;
+    var squareTemplate = notifications.TileTemplateType.tileSquareText01;
 
     app.onactivated = function (args) {
         if (args.detail.kind === activation.ActivationKind.launch) {
@@ -37,6 +41,44 @@
             event._calculate();
         });
     }, 250);
+
+    function updateTiles() {
+        var i = 0;
+        Events.model.events.forEach(function(event) {
+            if (++i > 5)
+                return;
+
+            var tileXml = notifications.TileUpdateManager.getTemplateContent(template);
+            var squareTileXml = notifications.TileUpdateManager.getTemplateContent(squareTemplate);
+
+            var tileTextAttributes = tileXml.getElementsByTagName("text");
+            tileTextAttributes[0].appendChild(tileXml.createTextNode(event.name));
+            tileTextAttributes[3].appendChild(tileXml.createTextNode(event.secondarySpan));
+            tileTextAttributes[4].appendChild(tileXml.createTextNode(event.mainSpanValue));
+            tileTextAttributes[5].appendChild(tileXml.createTextNode(event.mainSpanUnit));
+
+            var squareTileTextAttributes = squareTileXml.getElementsByTagName("text");
+            squareTileTextAttributes[0].appendChild(squareTileXml.createTextNode(event.mainSpanValue));
+            squareTileTextAttributes[1].appendChild(squareTileXml.createTextNode(event.mainSpanUnit));
+            squareTileTextAttributes[2].appendChild(squareTileXml.createTextNode(event.name));
+
+            var node = tileXml.importNode(squareTileXml.getElementsByTagName("binding").item(0), true);
+            tileXml.getElementsByTagName("visual").item(0).appendChild(node);
+            var tileNotification = new notifications.TileNotification(tileXml);
+            var currentTime = new Date();
+            tileNotification.expirationTime = new Date(currentTime.getTime() + 30 * 1000);
+            tileNotification.tag = "event" + i;
+            notifications.TileUpdateManager.createTileUpdaterForApplication().update(tileNotification);
+        });
+    }
+
+    setTimeout(function() {
+        updateTiles();
+        setInterval(function() {
+            updateTiles();
+        }, 20000);
+    }, 500);
+    
 
     app.start();
 })();

@@ -1,48 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-
-  <Identity
-    Name="02ab25f9-1a2f-4b65-85a9-a3809c0787a9"
-    Version="1.0.0.0"
-    Publisher="CN=bWasielak" />
-
+  <Identity Name="02ab25f9-1a2f-4b65-85a9-a3809c0787a9" Version="1.0.0.0" Publisher="CN=bWasielak" />
   <Properties>
     <DisplayName>CountDown</DisplayName>
     <PublisherDisplayName>bWasielak</PublisherDisplayName>
     <Logo>images\storelogo.png</Logo>
   </Properties>
-
   <Prerequisites>
     <OSMinVersion>6.2.1</OSMinVersion>
     <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
   </Prerequisites>
-
   <Resources>
     <Resource Language="x-generate" />
   </Resources>
-
   <Applications>
-    <Application 
-      Id="App"
-      StartPage="default.html">
-
-      <VisualElements
-        DisplayName="CountDown"
-        Logo="images\logo.png"
-        SmallLogo="images\smalllogo.png"
-        Description="CountDown"
-        ForegroundText="light"
-        BackgroundColor="#464646">
-
-        <DefaultTile ShowName="allLogos" />
-        <SplashScreen Image="images\splashscreen.png" />
-
+    <Application Id="App" StartPage="default.html">
+      <VisualElements DisplayName="CountDown" Logo="images\logo150.png" SmallLogo="images\smalllogo.png" Description="CountDown" ForegroundText="light" BackgroundColor="#D24726">
+        <DefaultTile ShowName="allLogos" WideLogo="images\logo310.png" />
+        <SplashScreen Image="images\splashscreen.png" BackgroundColor="#D24726" />
       </VisualElements>
     </Application>
   </Applications>
-
   <Capabilities>
     <Capability Name="internetClient" />
   </Capabilities>
-
 </Package>
