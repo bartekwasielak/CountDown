@@ -1,17 +1,22 @@
 ﻿(function () {  
     var Event = WinJS.Class.define(
-        function (name, date) {
+        function (name, date, color) {
             this._initObservable();
             this.name = name;
             this.date = date;
             this.mainSpanValue = "";
             this.secondarySpan = "";
             this.mainSpanUnit = "";
+            this.inPast = false;
+            this.color = color;
         },
         {
             _calculate: function() {
                 var date = Date.parse(this.date);
                 var diff = date - new Date();
+                if (diff < 0)
+                    this.inFuture = true;
+                diff = Math.abs(diff);
                 var days = Math.floor(diff / Event._d);
                 var hours = Math.floor((diff - (days * Event._d)) / Event._h);
                 var minutes = Math.floor((diff - (days * Event._d + hours * Event._h)) / Event._m);
@@ -43,7 +48,7 @@
     
     WinJS.Class.mix(Event,
         WinJS.Binding.mixin,
-        WinJS.Binding.expandProperties({ name: "", mainSpanUnit: "", mainSpanValue: "", secondarySpan: "" })
+        WinJS.Binding.expandProperties({ name: "", mainSpanUnit: "", mainSpanValue: "", secondarySpan: "", inPast: false, color: "" })
     );
     
     WinJS.Namespace.define("Events", {
@@ -52,9 +57,10 @@
         model: WinJS.Binding.as({
             date: new Date(),
             events: new WinJS.Binding.List([
-                new Event("Koniec projektu", "2013-08-09T17:00"),
-                new Event("Przylot Izy", "2013-08-11T06:25"),
-                new Event("Powrót", "2013-08-18T11:25")
+                new Event("Koniec projektu", "2013-08-09T17:00", "#008299"),
+                new Event("Przylot Izy", "2013-08-11T06:25", "#D24726"),
+                new Event("Powrót", "2013-08-18T11:25", "#008A00"),
+                new Event("Pobyt w Tokio", "2013-06-02T15:20", "#AC193D")
             ])
         })
     });

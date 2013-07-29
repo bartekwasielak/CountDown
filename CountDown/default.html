@@ -18,7 +18,7 @@
 </head>
     <body>
         <div class="eventTemplate" data-win-control="WinJS.Binding.Template">
-            <div class="event">
+            <div class="event" data-win-bind="style.background: color">
                 <div class="eventTitle" data-win-bind="textContent: name"></div>
                 <div>
                     <span class="mainSpanValue" data-win-bind="textContent: mainSpanValue"></span>
@@ -31,7 +31,8 @@
         <div data-win-control="WinJS.UI.ListView"
              data-win-bind="winControl.itemDataSource: events.dataSource"
              data-win-options="{
-                itemTemplate: select('.eventTemplate')
+                    itemTemplate: select('.eventTemplate'),
+                    layout: {type: WinJS.UI.GridLayout, horizontal: false}
                 }"></div>
     </body>
 </html>
