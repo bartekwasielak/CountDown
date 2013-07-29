@@ -19,16 +19,18 @@
                 if (days != 0) {
                     this.setProperty("mainSpanValue", days);
                     this.setProperty("mainSpanUnit", "days");
-                    this.setProperty("secondarySpan", hours + " hours " + minutes + " minutes " + seconds);
+                    this.setProperty("secondarySpan", hours + " hours " + minutes + " minutes");
+                    return;
                 }
                 if (hours != 0) {
                     this.setProperty("mainSpanValue", hours);
                     this.setProperty("mainSpanUnit", "hours");
-                    this.setProperty("secondarySpan", minutes + " minutes " + seconds);
+                    this.setProperty("secondarySpan", minutes + " minutes");
+                    return;
                 }
                 this.setProperty("mainSpanValue", minutes);
                 this.setProperty("mainSpanUnit", "minutes");
-                this.setProperty("secondarySpan", seconds);
+                this.setProperty("secondarySpan", "");
             }
         },
         {
@@ -51,7 +53,8 @@
             date: new Date(),
             events: new WinJS.Binding.List([
                 new Event("Koniec projektu", "2013-08-09T17:00"),
-                new Event("Przylot Izy", "2013-08-11T06:25")
+                new Event("Przylot Izy", "2013-08-11T06:25"),
+                new Event("Powrót", "2013-08-18T11:25")
             ])
         })
     });

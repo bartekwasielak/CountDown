@@ -12,3 +12,31 @@
 
 @media screen and (-ms-view-state: fullscreen-portrait) {
 }
+
+.event {
+    width: 300px;
+    height: 200px;
+    background-color: darkorange;
+    margin: 5px;
+    padding: 5px;
+}
+
+.eventTitle {
+    width: 280px;
+    font-size: 20pt;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mainSpanValue {
+    font-size: 48pt;
+}
+
+.mainSpanUnit {
+    font-size: 20pt;
+    display: inline;
+}
+
+.secondarySpan {
+    font-size: 24pt;
+}

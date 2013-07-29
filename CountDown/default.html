@@ -18,10 +18,14 @@
 </head>
     <body>
         <div class="eventTemplate" data-win-control="WinJS.Binding.Template">
-            <div class="eventTitle" data-win-bind="textContent: name"></div>
-            <div class="mainSpanValue" data-win-bind="textContent: mainSpanValue"></div>
-            <div class="mainSpanUnit" data-win-bind="textContent: mainSpanUnit"></div>
-            <div class="secondarySpan" data-win-bind="textContent: secondarySpan"></div>
+            <div class="event">
+                <div class="eventTitle" data-win-bind="textContent: name"></div>
+                <div>
+                    <span class="mainSpanValue" data-win-bind="textContent: mainSpanValue"></span>
+                    <span class="mainSpanUnit" data-win-bind="textContent: mainSpanUnit"></span>
+                </div>
+                <div class="secondarySpan" data-win-bind="textContent: secondarySpan"></div>
+            </div>
         </div>
 
         <div data-win-control="WinJS.UI.ListView"
